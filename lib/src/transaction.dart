@@ -10,9 +10,11 @@ class UpiTransactionHelper implements _PlatformTransactionHelperBase {
           ? IosTransactionHelper()
           : null;
   static final _singleton = UpiTransactionHelper._inner();
+
   factory UpiTransactionHelper() {
     return _singleton;
   }
+
   UpiTransactionHelper._inner();
 
   @override
@@ -28,9 +30,11 @@ class UpiTransactionHelper implements _PlatformTransactionHelperBase {
 
 class AndroidTransactionHelper implements _PlatformTransactionHelperBase {
   static final _singleton = AndroidTransactionHelper._inner();
+
   factory AndroidTransactionHelper() {
     return _singleton;
   }
+
   AndroidTransactionHelper._inner();
 
   @override
@@ -45,9 +49,11 @@ class AndroidTransactionHelper implements _PlatformTransactionHelperBase {
 
 class IosTransactionHelper implements _PlatformTransactionHelperBase {
   static final _singleton = IosTransactionHelper._inner();
+
   factory IosTransactionHelper() {
     return _singleton;
   }
+
   IosTransactionHelper._inner();
 
   @override

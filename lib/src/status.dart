@@ -1,6 +1,7 @@
 class UpiApplicationStatus {
   final UpiApplicationAndroidStatus androidStatus;
   final UpiApplicationIosStatus? iosStatus;
+
   UpiApplicationStatus({
     required this.androidStatus,
     required this.iosStatus,
@@ -614,10 +615,11 @@ final _iosStatusUnstableNoUpiScheme = UpiApplicationIosStatus(
 
 class UpiApplicationAndroidStatus extends UpiApplicationPlatformStatus {
   final NonMerchantPaymentAndroidStatus? nonMerchantPaymentStatus;
+
   UpiApplicationAndroidStatus({
     required UpiApplicationSetupStatus setup,
     required UpiApplicationLinkingSupport linkingSupport,
-    bool warnsUnverifiedSourceForNonMerchant: false,
+    bool warnsUnverifiedSourceForNonMerchant = false,
     this.nonMerchantPaymentStatus,
   }) : super(
             setup: setup,
@@ -628,10 +630,11 @@ class UpiApplicationAndroidStatus extends UpiApplicationPlatformStatus {
 
 class UpiApplicationIosStatus extends UpiApplicationPlatformStatus {
   final NonMerchantPaymentIosStatus? nonMerchantPaymentStatus;
+
   UpiApplicationIosStatus({
     required UpiApplicationSetupStatus setup,
     required UpiApplicationLinkingSupport linkingSupport,
-    bool warnsUnverifiedSourceForNonMerchant: false,
+    bool warnsUnverifiedSourceForNonMerchant = false,
     this.nonMerchantPaymentStatus,
   }) : super(
             setup: setup,
@@ -648,7 +651,7 @@ class UpiApplicationPlatformStatus {
   UpiApplicationPlatformStatus({
     required this.setup,
     required this.linkingSupport,
-    this.warnsUnverifiedSourceForNonMerchant: false,
+    this.warnsUnverifiedSourceForNonMerchant = false,
   });
 }
 
