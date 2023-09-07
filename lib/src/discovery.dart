@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:universal_io/io.dart' as io;
 import 'package:upi_pay/src/applications.dart';
+import 'package:upi_pay/src/meta.dart';
 import 'package:upi_pay/src/method_channel.dart';
 import 'package:upi_pay/src/status.dart';
-import 'package:upi_pay/src/meta.dart';
 
 class UpiApplicationDiscovery implements _PlatformDiscoveryBase {
   final discovery = io.Platform.isAndroid
@@ -13,18 +13,20 @@ class UpiApplicationDiscovery implements _PlatformDiscoveryBase {
           ? _IosDiscovery()
           : null;
   static final _singleton = UpiApplicationDiscovery._inner();
+
   factory UpiApplicationDiscovery() {
     return _singleton;
   }
+
   UpiApplicationDiscovery._inner();
 
   @override
   Future<List<ApplicationMeta>> discover({
     required UpiMethodChannel upiMethodChannel,
     required Map<UpiApplication, UpiApplicationStatus> applicationStatusMap,
-    UpiApplicationDiscoveryAppPaymentType paymentType:
+    UpiApplicationDiscoveryAppPaymentType paymentType =
         UpiApplicationDiscoveryAppPaymentType.nonMerchant,
-    UpiApplicationDiscoveryAppStatusType statusType:
+    UpiApplicationDiscoveryAppStatusType statusType =
         UpiApplicationDiscoveryAppStatusType.working,
   }) async {
     if (io.Platform.isAndroid || io.Platform.isIOS) {
@@ -41,18 +43,20 @@ class UpiApplicationDiscovery implements _PlatformDiscoveryBase {
 
 class _AndroidDiscovery implements _PlatformDiscoveryBase {
   static final _singleton = _AndroidDiscovery._inner();
+
   factory _AndroidDiscovery() {
     return _singleton;
   }
+
   _AndroidDiscovery._inner();
 
   @override
   Future<List<ApplicationMeta>> discover({
     required UpiMethodChannel upiMethodChannel,
     required Map<UpiApplication, UpiApplicationStatus> applicationStatusMap,
-    UpiApplicationDiscoveryAppPaymentType paymentType:
+    UpiApplicationDiscoveryAppPaymentType paymentType =
         UpiApplicationDiscoveryAppPaymentType.nonMerchant,
-    UpiApplicationDiscoveryAppStatusType statusType:
+    UpiApplicationDiscoveryAppStatusType statusType =
         UpiApplicationDiscoveryAppStatusType.working,
   }) async {
     final appsList = await upiMethodChannel.getInstalledUpiApps();
@@ -114,18 +118,20 @@ class _AndroidDiscovery implements _PlatformDiscoveryBase {
 
 class _IosDiscovery implements _PlatformDiscoveryBase {
   static final _singleton = _IosDiscovery._inner();
+
   factory _IosDiscovery() {
     return _singleton;
   }
+
   _IosDiscovery._inner();
 
   @override
   Future<List<ApplicationMeta>> discover({
     required UpiMethodChannel upiMethodChannel,
     required Map<UpiApplication, UpiApplicationStatus> applicationStatusMap,
-    UpiApplicationDiscoveryAppPaymentType paymentType:
+    UpiApplicationDiscoveryAppPaymentType paymentType =
         UpiApplicationDiscoveryAppPaymentType.nonMerchant,
-    UpiApplicationDiscoveryAppStatusType statusType:
+    UpiApplicationDiscoveryAppStatusType statusType =
         UpiApplicationDiscoveryAppStatusType.working,
   }) async {
     Map<String, UpiApplication> discoveryMap = {};
@@ -199,9 +205,9 @@ abstract class _PlatformDiscoveryBase {
   Future<List<ApplicationMeta>> discover({
     required UpiMethodChannel upiMethodChannel,
     required Map<UpiApplication, UpiApplicationStatus> applicationStatusMap,
-    UpiApplicationDiscoveryAppPaymentType paymentType:
+    UpiApplicationDiscoveryAppPaymentType paymentType =
         UpiApplicationDiscoveryAppPaymentType.nonMerchant,
-    UpiApplicationDiscoveryAppStatusType statusType:
+    UpiApplicationDiscoveryAppStatusType statusType =
         UpiApplicationDiscoveryAppStatusType.working,
   });
 }

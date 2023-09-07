@@ -1,13 +1,15 @@
-import 'package:universal_io/io.dart' as io;
 import 'package:flutter/services.dart';
+import 'package:universal_io/io.dart' as io;
 import 'package:upi_pay/src/transaction_details.dart';
 
 class UpiMethodChannel {
   MethodChannel _channel = MethodChannel('upi_pay');
   static final _singleton = UpiMethodChannel._inner();
+
   factory UpiMethodChannel() {
     return _singleton;
   }
+
   UpiMethodChannel._inner();
 
   Future<String?> initiateTransaction(

@@ -134,6 +134,7 @@ class UpiApplication {
     iosBundleId: 'com.olive.andhrabank.upi',
     appName: 'Andhra UPI',
   );
+
   // BHIM AUPay (AU Small Finance Bank's BHIM UPI app)
   static final bhimAuPay = UpiApplication(
     androidPackageName: 'com.aubank.aupay.bhimupi',
